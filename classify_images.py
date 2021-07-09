@@ -37,9 +37,9 @@ def classify_images(images_dir, results_dic, model):
         classifier_label=classifier_result.lower().strip()
         results_dic[key].append(classifier_label)
         
-        ext_list=[]
         if results_dic[key][0] in classifier_label:
             ext_list=[classifier_label,1]
+            results_dic[key].extend(ext_list)
         
         else:
             ext_list=[classifier_label,0]

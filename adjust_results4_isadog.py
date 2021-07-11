@@ -67,32 +67,34 @@ def adjust_results4_isadog(results_dic, dogfile):
     Returns:
            None - results_dic is mutable data type so no return needed.
     """           
-    def adjust_results4_isadog(results_dic, dogfile):
-        dognames_dic = dict()
+    dognames_dic = dict()
+    
+    with open(dogfile, "r") as f:
+        line = f.readline()
         
-        with open(dogfile, "r") as f:
-            line = f.readline()
+        while line != "":
+            line = line.strip()
             
-            while line != "":
-                line = line.strip()
-                if line not in dognames_dic.keys():
-                    dognames_dic[line] = 1
-                line = f.readline()
-                print(results_dic)
+            if line not in dognames_dic.keys():
+                dognames_dic[line] = 1
                 
-            for key in results_dic:
-                if results_dic[key][0] in dognames_dic:
-                    if results_dic[key][1] in dognames_dic:
-                        results_dic[key].extend((1, 1))
-                    else:
-                        results_dic[key].extend((1, 0))
+            line = f.readline()
+            print(results_dic)
+                
+        for key in results_dic:
+            if results_dic[key][0] in dognames_dic:
+                if results_dic[key][1] in dognames_dic:
+                    results_dic[key].extend((1, 1))
                 else:
-                    if results_dic[key][1] in dognames_dic:
-                        results_dic[key].extend((0, 1))
-                    else:
-                        results_dic[key].extend((0, 0))
+                    results_dic[key].extend((1, 0))
+            else:
+                if results_dic[key][1] in dognames_dic:
+                    results_dic[key].extend((0, 1))
+                else:
+                    results_dic[key].extend((0, 0))
                 
     None
+    
     
     
   

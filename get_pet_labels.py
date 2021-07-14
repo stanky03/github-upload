@@ -19,15 +19,14 @@
 # Imports python modules
 
 from os import listdir
-print("\nPrints 10 filenames from folder pet_images/")
-filename_list = listdir("pet_images/")
-for idx in range(0, 10, 1):
-    print("{:2d} file: {:>25}".format(idx + 1, filename_list[idx]) )
-
 
 
 def get_pet_labels(image_dir):
+    
+    filename_list = listdir(image_dir)
+    
     results_dic = dict()
+    
     items_in_dic = len(results_dic)
 
     for idx in range(0, len(filename_list), 1):
@@ -38,21 +37,25 @@ def get_pet_labels(image_dir):
 
             pet_name = ""
 
-    for word in pet_image:
+            for word in pet_image:
 
-        if word.isalpha():
+                if word.isalpha():
 
-            pet_name += word + " "
+                    pet_name += word + " "
 
-            pet_name = pet_name.strip()
-
-            results_dic[filename_list[idx]] = [pet_name]
+                pet_name = pet_name.strip()
             
-            for key in results_dic:
-                print("Filename=", key, "   Pet Label=", results_dic[key][0])
-
+            if filename_list[idx] not in results_dic:
+                    results_dic[filename_list[idx]] = [pet_name]
             
+            else:
+                    print("** Warning: Duplicate files exist in directory:", 
+                         filename_list[idx])
+            
+    print (results_dic)
     return results_dic
+
+
 
 
 

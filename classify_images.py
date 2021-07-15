@@ -35,7 +35,6 @@ def classify_images(images_dir, results_dic, model):
     for key in keys:
         classifier_result=classifier(images_dir+'/'+key,model)
         classifier_label=classifier_result.lower().strip()
-        results_dic[key].append(classifier_label)
         
         if results_dic[key][0] in classifier_label:
             ext_list=[classifier_label,1]

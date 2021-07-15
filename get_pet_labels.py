@@ -43,7 +43,7 @@ def get_pet_labels(image_dir):
 
                     pet_name += word + " "
 
-                pet_name = pet_name.strip()
+            pet_name = pet_name.strip()
             
             if filename_list[idx] not in results_dic:
                     results_dic[filename_list[idx]] = [pet_name]
@@ -54,19 +54,3 @@ def get_pet_labels(image_dir):
             
     print (results_dic)
     return results_dic
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
